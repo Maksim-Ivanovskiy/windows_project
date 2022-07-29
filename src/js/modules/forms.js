@@ -1,14 +1,11 @@
+import checkNumInputs from './checkNumInputs';
 
-const forms = () => {
+const forms = (state) => {
    const form = document.querySelectorAll('form'),
-         inputs = document.querySelectorAll('input'),
-         phoneInputs = document.querySelectorAll('input[name="user_phone"]');       //получаем элемменты, которые нам понадобятся
+         inputs = document.querySelectorAll('input');
 
-    phoneInputs.forEach(item => {
-        item.addEventListener('input', () => {
-            item.value = item.value.replace(/\D/, ''); //когда пользователь что-то вводит, регулярное выражение находит все не цифры и заменяет его пустым местом
-        });
-    });
+
+    checkNumInputs('input[name="user_phone"]');
 
     const message = {
         loading: 'Загрузка',
@@ -40,7 +37,12 @@ const forms = () => {
             statusMessage.classList.add('status');
             item.appendChild(statusMessage);
 
-            const formData = new FormData(item);        //собираем все введенные данные из этой формы
+            const formData = new FormData(item);        //собираем все введенные данные из этой формы   
+            if (item.getAttribute('data-calc') === "end") {
+                for (let key in state) {
+                    formData.append(key, state[key]);
+                }
+            }
 
             postData('assets/server.php', formData)     //отправляем запрос на сервер по адресу в первом документе с даннымы, который получил formData
                 .then(res => {
