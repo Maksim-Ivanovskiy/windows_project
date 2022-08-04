@@ -35,6 +35,11 @@ const modals = () => {
                 closeModal();
             }
         });
+        document.addEventListener('keydown', (e) => {
+            if (e.code === "Escape"/* && modals.classList.contains('show') */) { 
+                closeModal();
+            }
+        });
     }
 
     function showModalByTime(selector, time) {
