@@ -1,12 +1,12 @@
 
-const forms = () => {
-   const form = document.querySelectorAll('form'),
+export const forms = () => {
+   const forms = document.querySelectorAll('form'),
          inputs = document.querySelectorAll('input'),
          phoneInputs = document.querySelectorAll('input[name="user_phone"]');       //получаем элемменты, которые нам понадобятся
 
-    phoneInputs.forEach(item => {
-        item.addEventListener('input', () => {
-            item.value = item.value.replace(/\D/, ''); //когда пользователь что-то вводит, регулярное выражение находит все не цифры и заменяет его пустым местом
+    phoneInputs.forEach(input => {
+        input.addEventListener('input', () => {
+            input.value = input.value.replace(/\D/, ''); //когда пользователь что-то вводит, регулярное выражение находит все не цифры и заменяет его пустым местом
         });
     });
 
@@ -18,7 +18,7 @@ const forms = () => {
 
     const postData = async (url, data) => {
         document.querySelector('.status').textContent = message.loading;       //функция, которая отвечает за отправку запроса
-        let res = await fetch(url, {
+        const res = await fetch(url, {
             method: "POST",
             body: data
         });
@@ -32,15 +32,15 @@ const forms = () => {
         });
     };
 
-    form.forEach(item => {
-        item.addEventListener('submit', (e) => {        //перебираем все формы, навешиваем обработчик события, создаем блок, в котором будем показывать пользователю, что что-то пошло не так, либо запрос отправился.
+    forms.forEach(form => {
+        form.addEventListener('submit', (e) => {        //перебираем все формы, навешиваем обработчик события, создаем блок, в котором будем показывать пользователю, что что-то пошло не так, либо запрос отправился.
             e.preventDefault();     
 
-            let statusMessage = document.createElement('div');
+            const statusMessage = document.createElement('div');
             statusMessage.classList.add('status');
-            item.appendChild(statusMessage);
+            form.append(statusMessage);
 
-            const formData = new FormData(item);        //собираем все введенные данные из этой формы
+            const formData = new FormData(form);        //собираем все введенные данные из этой формы
 
             postData('assets/server.php', formData)     //отправляем запрос на сервер по адресу в первом документе с даннымы, который получил formData
                 .then(res => {
@@ -59,5 +59,5 @@ const forms = () => {
     });
 };
 
-export default forms;
+
 
