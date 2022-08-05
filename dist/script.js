@@ -17803,20 +17803,18 @@ module.exports = g;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slider */ "./src/js/slider.js");
-/* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modals */ "./src/js/modules/modals.js");
-/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
-/* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/forms */ "./src/js/modules/forms.js");
+/* harmony import */ var _modules_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/index */ "./src/js/modules/index.js");
 
+/* import {modals} from "./modules/modals";
+import {tabs} from "./modules/tabs";
+import {forms} from "./modules/forms"; */
 
-
-
-/* import {modals, tabs, forms} from "./modules/index"; */
 
 window.addEventListener('DOMContentLoaded', function () {
-  Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["modals"])();
-  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["tabs"])('.glazing_slider', '.glazing_block', '.glazing_content', 'active');
-  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["tabs"])('.decoration_slider', '.no_click', '.decoration_content > div > div', 'after_click');
-  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["forms"])();
+  Object(_modules_index__WEBPACK_IMPORTED_MODULE_1__["modals"])();
+  Object(_modules_index__WEBPACK_IMPORTED_MODULE_1__["tabs"])('.glazing_slider', '.glazing_block', '.glazing_content', 'active');
+  Object(_modules_index__WEBPACK_IMPORTED_MODULE_1__["tabs"])('.decoration_slider', '.no_click', '.decoration_content > div > div', 'after_click');
+  Object(_modules_index__WEBPACK_IMPORTED_MODULE_1__["forms"])();
 });
 
 /***/ }),
@@ -17926,6 +17924,30 @@ var forms = function forms() {
     });
   });
 };
+
+/***/ }),
+
+/***/ "./src/js/modules/index.js":
+/*!*********************************!*\
+  !*** ./src/js/modules/index.js ***!
+  \*********************************/
+/*! exports provided: modals, tabs, forms */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modals__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modals */ "./src/js/modules/modals.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "modals", function() { return _modals__WEBPACK_IMPORTED_MODULE_0__["modals"]; });
+
+/* harmony import */ var _tabs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs */ "./src/js/modules/tabs.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "tabs", function() { return _tabs__WEBPACK_IMPORTED_MODULE_1__["tabs"]; });
+
+/* harmony import */ var _forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./forms */ "./src/js/modules/forms.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "forms", function() { return _forms__WEBPACK_IMPORTED_MODULE_2__["forms"]; });
+
+
+
+
 
 /***/ }),
 
