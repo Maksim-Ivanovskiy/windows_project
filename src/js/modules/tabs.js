@@ -4,8 +4,8 @@ export const tabs = ({headersSelector, tabsSelector, contentItemsSelector, activ
           content = document.querySelectorAll(contentItemsSelector);
     
     function hideTabContent() {
-        content.forEach(item => {
-            item.style.display = 'none';
+        content.forEach(contentItem => {
+            contentItem.style.display = 'none';
         });
 
         tabs.forEach(tab => {
