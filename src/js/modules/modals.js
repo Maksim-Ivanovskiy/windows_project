@@ -1,32 +1,43 @@
-const modals = () => {
-    function bindModal(triggerSelector, modalSelector, closeSelector) {
-        const trigger = document.querySelectorAll(triggerSelector),
-              modal = document.querySelector(modalSelector),
+export const modals = () => {
+    function bindModal({triggersSelector, modalsSelector, closeSelector}) {
+        const triggers = document.querySelectorAll(triggersSelector),
+              modals = document.querySelector(modalsSelector),
               close = document.querySelector(closeSelector); 
 
-        trigger.forEach(item => {
-            item.addEventListener('click', (e) => {
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
                 if (e.target) {
                     e.preventDefault();
                 }
     
-                modal.style.display = "block";
+                modals.style.display = "block";
                 document.body.style.overflow = "hidden";
                 /* document.body.classList.add('modal-open'); */
             });
         });
+        const closeModal = () => {
+            modals.style.display = "none";
+            document.body.style.overflow = "";
+        };
 
         close.addEventListener('click', () => {
-            modal.style.display = "none";
-            document.body.style.overflow = "";
+            /* modals.style.display = "none";
+            document.body.style.overflow = ""; */
             /* document.body.classList.remove('modal-open'); */
+            closeModal();
         });
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = "none";
-                document.body.style.overflow = "";
+        modals.addEventListener('click', (e) => {
+            if (e.target === modals) {
+                /* modals.style.display = "none";
+                document.body.style.overflow = ""; */
                 /* document.body.classList.remove('modal-open'); */
+                closeModal();
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.code === "Escape"/* && modals.classList.contains('show') */) { 
+                closeModal();
             }
         });
     }
@@ -38,9 +49,18 @@ const modals = () => {
         }, time);
     }
 
-    bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close');
-    bindModal('.phone_link', '.popup', '.popup .popup_close');
+    /* bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close'); */
+    bindModal({
+        triggersSelector: '.popup_engineer_btn',
+        modalsSelector: '.popup_engineer',
+        closeSelector: '.popup_engineer .popup_close'
+    });
+    /* bindModal('.phone_link', '.popup', '.popup .popup_close'); */
+    bindModal({
+        triggersSelector: '.phone_link',
+        modalsSelector: '.popup',
+        closeSelector: '.popup .popup_close'
+    });
     showModalByTime('.popup', 60000);
 };
 
-export default modals;
