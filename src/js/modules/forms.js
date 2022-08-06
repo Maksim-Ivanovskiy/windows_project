@@ -27,8 +27,8 @@ export const forms = () => {
     };  
 
     const clearInputs = () => {
-        inputs.forEach(item => {
-            item.value = '';                    //функция по очищению всех инпутов
+        inputs.forEach(input => {
+            input.value = '';                    //функция по очищению всех инпутов
         });
     };
 
