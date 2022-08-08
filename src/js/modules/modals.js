@@ -1,7 +1,7 @@
 
 export const modals = () => {
 
-    function bindModal({triggersSelector, modalsSelector, closeSelector, closeCLickOverlay}) {
+    function bindModal({triggersSelector, modalsSelector, closeSelector, closeCLickOverlay = true}) {
         const triggers = document.querySelectorAll(triggersSelector),
               modals = document.querySelector(modalsSelector),
               close = document.querySelector(closeSelector),
