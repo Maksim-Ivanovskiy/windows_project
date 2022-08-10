@@ -1,14 +1,11 @@
+import checkNumInputs from './checkNumInputs';
 
-export const forms = () => {
-   const forms = document.querySelectorAll('form'),
-         inputs = document.querySelectorAll('input'),
-         phoneInputs = document.querySelectorAll('input[name="user_phone"]');       //получаем элемменты, которые нам понадобятся
+export const forms = (state) => {
+    const forms  = document.querySelectorAll('form'),
+          inputs = document.querySelectorAll('input');
 
-    phoneInputs.forEach(input => {
-        input.addEventListener('input', () => {
-            input.value = input.value.replace(/\D/, ''); //когда пользователь что-то вводит, регулярное выражение находит все не цифры и заменяет его пустым местом
-        });
-    });
+
+    checkNumInputs('input[name="user_phone"]');
 
     const message = {
         loading: 'Загрузка',
@@ -40,8 +37,14 @@ export const forms = () => {
             statusMessage.classList.add('status');
             form.append(statusMessage);
 
-            const formData = new FormData(form);        //собираем все введенные данные из этой формы
 
+            const formData = new FormData(form);        //собираем все введенные данные из этой формы   
+            if (form.getAttribute('data-calc') === "end") {
+                for (let key in state) {
+                    formData.append(key, state[key]);
+                }
+            }
+            
             postData('assets/server.php', formData)     //отправляем запрос на сервер по адресу в первом документе с даннымы, который получил formData
                 .then(res => {
                     console.log(res);
@@ -54,7 +57,6 @@ export const forms = () => {
                         statusMessage.remove();
                     }, 5000);
                 });
-
         });
     });
 };
