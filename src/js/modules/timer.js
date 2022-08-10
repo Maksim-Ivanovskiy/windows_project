@@ -1,4 +1,4 @@
-const timer = (id, deadline) => {
+export const timer = (id, deadline) => {
     const addZero = (num) => num <= 9 ? '0' + num : num;
 
     const getTimeRemaining = (endtime) => {
@@ -43,5 +43,3 @@ const timer = (id, deadline) => {
 
     setClock(id, deadline);
 };
-
-export default timer;
