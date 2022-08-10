@@ -1,4 +1,4 @@
-const images = () => {
+export const images = () => {
     const imgPopup = document.createElement('div'),
           workSection = document.querySelector('.works'),
           bigImage = document.createElement('img');
@@ -11,8 +11,7 @@ const images = () => {
     imgPopup.style.alignItems = 'center';
     imgPopup.style.display = 'none'; 
     
-
-
+    
     imgPopup.appendChild(bigImage);
 
     workSection.addEventListener('click', (e) => {
@@ -34,5 +33,3 @@ const images = () => {
         }
     });
 };
-
-export default images;

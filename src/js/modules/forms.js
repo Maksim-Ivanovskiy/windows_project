@@ -1,8 +1,8 @@
 import checkNumInputs from './checkNumInputs';
 
-const forms = (state) => {
-   const form = document.querySelectorAll('form'),
-         inputs = document.querySelectorAll('input');
+export const forms = (state) => {
+    const forms  = document.querySelectorAll('form'),
+          inputs = document.querySelectorAll('input');
 
 
     checkNumInputs('input[name="user_phone"]');
@@ -15,7 +15,7 @@ const forms = (state) => {
 
     const postData = async (url, data) => {
         document.querySelector('.status').textContent = message.loading;       //функция, которая отвечает за отправку запроса
-        let res = await fetch(url, {
+        const res = await fetch(url, {
             method: "POST",
             body: data
         });
@@ -24,26 +24,27 @@ const forms = (state) => {
     };  
 
     const clearInputs = () => {
-        inputs.forEach(item => {
-            item.value = '';                    //функция по очищению всех инпутов
+        inputs.forEach(input => {
+            input.value = '';                    //функция по очищению всех инпутов
         });
     };
 
-    form.forEach(item => {
-        item.addEventListener('submit', (e) => {        //перебираем все формы, навешиваем обработчик события, создаем блок, в котором будем показывать пользователю, что что-то пошло не так, либо запрос отправился.
+    forms.forEach(form => {
+        form.addEventListener('submit', (e) => {        //перебираем все формы, навешиваем обработчик события, создаем блок, в котором будем показывать пользователю, что что-то пошло не так, либо запрос отправился.
             e.preventDefault();     
 
-            let statusMessage = document.createElement('div');
+            const statusMessage = document.createElement('div');
             statusMessage.classList.add('status');
-            item.appendChild(statusMessage);
+            form.append(statusMessage);
 
-            const formData = new FormData(item);        //собираем все введенные данные из этой формы   
-            if (item.getAttribute('data-calc') === "end") {
+
+            const formData = new FormData(form);        //собираем все введенные данные из этой формы   
+            if (form.getAttribute('data-calc') === "end") {
                 for (let key in state) {
                     formData.append(key, state[key]);
                 }
             }
-
+            
             postData('assets/server.php', formData)     //отправляем запрос на сервер по адресу в первом документе с даннымы, который получил formData
                 .then(res => {
                     console.log(res);
@@ -56,10 +57,9 @@ const forms = (state) => {
                         statusMessage.remove();
                     }, 5000);
                 });
-
         });
     });
 };
 
-export default forms;
+
 
