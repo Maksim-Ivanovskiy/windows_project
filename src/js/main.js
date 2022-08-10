@@ -1,9 +1,17 @@
 import "./slider";
-import { modals, tabs, forms, changeModalState } from "./modules/index";
+
+/* import modals from "./modules/modals";
+import tabs from "./modules/tabs";
+import forms from "./modules/forms";
+import changeModalState from "./modules/changeModalState";
+import timer from "./modules/timer";  */
+    
+import { modals, tabs, forms, changeModalState, timer } from "./modules/index";
 
 window.addEventListener('DOMContentLoaded', () => {
     
     const modalState = {};
+    let deadLine = '2022-12-01';
 
     changeModalState(modalState);
     modals();
@@ -31,5 +39,6 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     forms(modalState);
+    timer('.container1', deadLine);
 
 });
