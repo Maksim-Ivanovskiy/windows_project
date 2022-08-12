@@ -15,13 +15,13 @@ export const images = () => {
     workSection.addEventListener('click', (e) => {
         e.preventDefault();
 
-        const target = e.target;
+        const target = e.target as HTMLDivElement;;
 
         if (target && target.classList.contains('preview')) {
             imgPopup.style.display = 'flex';
             document.body.style.overflow = "hidden";
             
-            const path = target.parentNode.getAttribute('href');
+            const path = (<HTMLDivElement>target.parentNode).getAttribute('href');
             bigImage.setAttribute('src', path);
         }
 

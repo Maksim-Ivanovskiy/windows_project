@@ -1,8 +1,8 @@
-export const timer = (id, deadline) => {
-    const addZero = (num) => num <= 9 ? '0' + num : num;
+export const timer = (id: string, deadline: string) => {
+    const addZero = (num: number) => num <= 9 ? '0' + num : num;
 
-    const getTimeRemaining = (endtime) => {
-        const total = Date.parse(endtime) - Date.parse(new Date()),
+    const getTimeRemaining = (endtime: string) => {
+        const total = Date.parse(endtime) - Date.parse(Date()),
               seconds = Math.floor((total/1000) % 60),
               minutes = Math.floor((total/1000/60) % 60),
               hours = Math.floor((total/(1000 * 60 * 60)) % 24),
@@ -11,7 +11,7 @@ export const timer = (id, deadline) => {
         return {total, days, hours, minutes, seconds};
     };
 
-    const setClock = (selector, endtime) => {
+    const setClock = (selector: any, endtime: any) => {
         const timer = document.querySelector(selector),
               days = timer.querySelector("#days"),
               hours = timer.querySelector("#hours"),
@@ -24,7 +24,7 @@ export const timer = (id, deadline) => {
         function updateClock() {
             const total = getTimeRemaining(endtime);
 
-            days.textContent = addZero(total.days);
+            days.textContent  = addZero(total.days);
             hours.textContent = addZero(total.hours);
             minutes.textContent = addZero(total.minutes);
             seconds.textContent = addZero(total.seconds);

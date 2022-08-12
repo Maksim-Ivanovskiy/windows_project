@@ -1,9 +1,9 @@
-const checkNumInputs = (selector) => {
+const checkNumInputs = (selector: string) => {
     const numInputs = document.querySelectorAll(selector);
 
     numInputs.forEach(input => {
         input.addEventListener('input', () => {
-            input.value = input.value.replace(/\D/, '');
+            (<HTMLInputElement>input).value = (<HTMLInputElement>input).value.replace(/\D/, '');
         });
     });
 };

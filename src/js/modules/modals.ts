@@ -1,14 +1,14 @@
 
 export const modals = () => {
 
-    function bindModal({triggersSelector, modalsSelector, closeSelector, closeCLickOverlay = true}) {
+    function bindModal({triggersSelector, modalsSelector, closeSelector, closeCLickOverlay = true}: {triggersSelector: string, modalsSelector: string, closeSelector: string, closeCLickOverlay?: boolean}) {
         const triggers = document.querySelectorAll(triggersSelector),
-              modals = document.querySelector(modalsSelector),
+              modals = document.querySelector<HTMLDivElement>(modalsSelector),
               close = document.querySelector(closeSelector),
-              windows = document.querySelectorAll('[data-modal]'); 
+              windows = document.querySelectorAll<HTMLDivElement>('[data-modal]'); 
 
         triggers.forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
+            trigger.addEventListener('click', (e: any) => {
                 if (e.target) {
                     e.preventDefault();
                 }
@@ -19,7 +19,6 @@ export const modals = () => {
     
                 modals.style.display = "block";
                 document.body.style.overflow = "hidden";
-                /* document.body.classList.add('modal-open'); */
             });
         });
 
@@ -33,12 +32,10 @@ export const modals = () => {
             windows.forEach(window => {
                 window.style.display = 'none';
             });
-            /* document.body.classList.remove('modal-open'); */
             closeModal();
         });
 
-
-        modals.addEventListener('click', (e) => {
+        modals.addEventListener('click', (e: Event) => {
             if (e.target === modals && closeCLickOverlay) {
                 windows.forEach(window => {
                     window.style.display = 'none';
@@ -54,9 +51,9 @@ export const modals = () => {
         });
     }
 
-    function showModalByTime(selector, time) {
+    function showModalByTime(selector: string, time: number) {
         setTimeout(function () {
-            document.querySelector(selector).style.display = 'block';
+            document.querySelector<HTMLElement>(selector).style.display = 'block';
             document.body.style.overflow = "hidden";
         }, time);
     }
