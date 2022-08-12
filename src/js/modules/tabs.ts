@@ -1,8 +1,9 @@
 
-export const tabs = ({headersSelector, tabsSelector, contentItemsSelector, activeClass, display = 'block'}) => {
+export const tabs = ({headersSelector, tabsSelector, contentItemsSelector, activeClass, display = 'block'}: 
+{headersSelector: string, tabsSelector: string, contentItemsSelector: string, activeClass: string, display?: string }) => {
     const headers = document.querySelector(headersSelector),
           tabs = document.querySelectorAll(tabsSelector),
-          content = document.querySelectorAll(contentItemsSelector);
+          content = document.querySelectorAll<HTMLDivElement>(contentItemsSelector);
     
     function hideTabContent() {
         content.forEach(contentItem => {
@@ -24,10 +25,10 @@ export const tabs = ({headersSelector, tabsSelector, contentItemsSelector, activ
     showTabContent();
 
     headers.addEventListener('click', (e) => {        //навешиваем обработчик события на обшую площадь которая соединяет в себе все табы
-        const target = e.target;
+        const target = e.target as HTMLDivElement;
         if (target &&
             (target.classList.contains(tabsSelector.replace(/\./, "")) ||         //проверяем, что мы действительно кликнули на один из табов
-        target.parentNode.classList.contains(tabsSelector.replace(/\./, "")))) {  
+            (<HTMLDivElement>target.parentNode).classList.contains(tabsSelector.replace(/\./, "")))) {  
             tabs.forEach((tab, i) => {                                    //перебираем эти табы и запоминает не только таб но и номер по порядку(i)
                 if (target == tab || target.parentNode == tab) {      //как только пользователь кликнул на таб который мы перебираем, мы используем его индекс(i)
                     hideTabContent();

@@ -1,6 +1,6 @@
 import "../js/slider";
 
-import { modals, tabs, forms, changeModalState, images, timer } from "../js/modules/index";
+import { modals, tabs, forms, changeModalState, timer, images } from "../js/modules/index";
 
 window.addEventListener('DOMContentLoaded', () => {
     

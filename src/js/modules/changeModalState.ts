@@ -11,7 +11,7 @@ export const changeModalState = (state) => {
     checkNumInputs('#width');
     checkNumInputs('#height');
 
-    const bindActionToElems = (event, elems, prop) => {
+    const bindActionToElems = (event: string, elems: any, prop: string) => {
         elems.forEach((elem, i) => {
             elem.addEventListener(event, () => {
                 switch(elem.nodeName) {

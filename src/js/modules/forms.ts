@@ -1,6 +1,7 @@
+import { Statement } from 'typescript';
 import checkNumInputs from './checkNumInputs';
 
-export const forms = (state) => {
+export const forms = (state: any) => {
     const forms  = document.querySelectorAll('form'),
           inputs = document.querySelectorAll('input');
 
@@ -13,7 +14,7 @@ export const forms = (state) => {
         failure: 'Что-то пошло не так...'
     };
 
-    const postData = async (url, data) => {
+    const postData = async (url: string, data: any) => {
         document.querySelector('.status').textContent = message.loading;       //функция, которая отвечает за отправку запроса
         const res = await fetch(url, {
             method: "POST",

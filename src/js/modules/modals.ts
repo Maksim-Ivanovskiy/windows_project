@@ -1,11 +1,11 @@
 
 export const modals = () => {
 
-    function bindModal({triggersSelector, modalsSelector, closeSelector, closeCLickOverlay = true}: any) {
+    function bindModal({triggersSelector, modalsSelector, closeSelector, closeCLickOverlay = true}: {triggersSelector: string, modalsSelector: string, closeSelector: string, closeCLickOverlay?: boolean}) {
         const triggers = document.querySelectorAll(triggersSelector),
-              modals = document.querySelector(modalsSelector),
+              modals = document.querySelector<HTMLDivElement>(modalsSelector),
               close = document.querySelector(closeSelector),
-              windows = document.querySelectorAll<HTMLElement>('[data-modal]'); 
+              windows = document.querySelectorAll<HTMLDivElement>('[data-modal]'); 
 
         triggers.forEach(trigger => {
             trigger.addEventListener('click', (e: any) => {
@@ -35,7 +35,7 @@ export const modals = () => {
             closeModal();
         });
 
-        modals.addEventListener('click', (e: any) => {
+        modals.addEventListener('click', (e: Event) => {
             if (e.target === modals && closeCLickOverlay) {
                 windows.forEach(window => {
                     window.style.display = 'none';
